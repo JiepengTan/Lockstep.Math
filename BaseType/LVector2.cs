@@ -17,13 +17,13 @@ namespace LockStepMath {
 
         public int _x;
         public int _y;
-        public static readonly LVector2 zero = new LVector2(0, 0);
-        public static readonly LVector2 one = new LVector2(LFloat.Precision, LFloat.Precision);
-        public static readonly LVector2 half = new LVector2(LFloat.Precision / 2, LFloat.Precision / 2);
-        public static readonly LVector2 up = new LVector2(0, LFloat.Precision);
-        public static readonly LVector2 down = new LVector2(0, -LFloat.Precision);
-        public static readonly LVector2 right = new LVector2(LFloat.Precision, 0);
-        public static readonly LVector2 left = new LVector2(-LFloat.Precision, 0);
+        public static readonly LVector2 zero = new LVector2(true,0, 0);
+        public static readonly LVector2 one = new LVector2(true,LFloat.Precision, LFloat.Precision);
+        public static readonly LVector2 half = new LVector2(true,LFloat.Precision / 2, LFloat.Precision / 2);
+        public static readonly LVector2 up = new LVector2(true,0, LFloat.Precision);
+        public static readonly LVector2 down = new LVector2(true,0, -LFloat.Precision);
+        public static readonly LVector2 right = new LVector2(true,LFloat.Precision, 0);
+        public static readonly LVector2 left = new LVector2(true,-LFloat.Precision, 0);
 
         private static readonly int[] Rotations = new int[] {
             1,
@@ -53,21 +53,32 @@ namespace LockStepMath {
         public const int ROTATE_CW_270 = 3;
         public const int ROTATE_CW_360 = 4;
 
-        public LVector2(LVector3 o){
-            this._x = o._x;
-            this._y = o._y;
+        public LVector2(bool isUseRawVal,int x, int y){
+            this._x = x;
+            this._y = y;
         }
-
+        
         public LVector2(LFloat x, LFloat y){
             this._x = x._val;
             this._y = y._val;
         }
 
         public LVector2(int x, int y){
-            this._x = x;
-            this._y = y;
+            this._x = x * LFloat.Precision;
+            this._y = y * LFloat.Precision;
         }
 
+
+        #if UNITY_EDITOR
+        /// <summary>
+        /// 直接使用浮点型 进行构造 警告!!! 仅应该在Editor模式下使用，不应该在正式代码中使用,避免出现引入浮点的不确定性
+        /// </summary>
+        public LVector2(bool shouldOnlyUseInEditor,float x, float y)
+        {
+            this._x = (int)(x * LFloat.Precision);
+            this._y = (int)(y * LFloat.Precision);
+        }
+        #endif
 
         /// <summary>
         /// clockwise 顺时针旋转  
@@ -76,17 +87,17 @@ namespace LockStepMath {
         /// </summary>
         public static LVector2 Rotate(LVector2 v, int r){
             r %= 4;
-            return new LVector2(
+            return new LVector2(true,
                 v._x * LVector2.Rotations[r * 4] + v._y * LVector2.Rotations[r * 4 + 1],
                 v._x * LVector2.Rotations[r * 4 + 2] + v._y * LVector2.Rotations[r * 4 + 3]);
         }
 
         public static LVector2 Min(LVector2 a, LVector2 b){
-            return new LVector2(Math.Min(a._x, b._x), Math.Min(a._y, b._y));
+            return new LVector2(true,Math.Min(a._x, b._x), Math.Min(a._y, b._y));
         }
 
         public static LVector2 Max(LVector2 a, LVector2 b){
-            return new LVector2(Math.Max(a._x, b._x), Math.Max(a._y, b._y));
+            return new LVector2(true,Math.Max(a._x, b._x), Math.Max(a._y, b._y));
         }
 
         public void Min(ref LVector2 r){
@@ -139,18 +150,18 @@ namespace LockStepMath {
 
         public LVector2 normalized {
             get {
-                LVector2 result = new LVector2(this._x, this._y);
+                LVector2 result = new LVector2(true,this._x, this._y);
                 result.Normalize();
                 return result;
             }
         }
 
         public static LVector2 operator +(LVector2 a, LVector2 b){
-            return new LVector2(a._x + b._x, a._y + b._y);
+            return new LVector2(true,a._x + b._x, a._y + b._y);
         }
 
         public static LVector2 operator -(LVector2 a, LVector2 b){
-            return new LVector2(a._x - b._x, a._y - b._y);
+            return new LVector2(true,a._x - b._x, a._y - b._y);
         }
 
         public static LVector2 operator -(LVector2 lhs){
@@ -187,7 +198,7 @@ namespace LockStepMath {
         
         public static implicit operator LVector2(LVector3 v)
         {
-            return new LVector2(v._x, v._y);
+            return new LVector2(true,v._x, v._y);
         }
 
         public static implicit operator LVector3(LVector2 v)
@@ -248,7 +259,7 @@ namespace LockStepMath {
         }
 
         public static LVector2 Lerp(LVector2 a, LVector2 b, LFloat f){
-            return new LVector2(
+            return new LVector2(true,
                 (int) (((long) (b._x - a._x) * f._val) / LFloat.Precision) + a._x,
                 (int) (((long) (b._y - a._y) * f._val) / LFloat.Precision) + a._y);
         }

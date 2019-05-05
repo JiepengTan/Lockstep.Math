@@ -21,7 +21,7 @@ namespace LockStepMath {
         }
 
         public static LVector2 ToLVector2(this Vector2Int vec){
-            return new LVector2(vec.x * LFloat.Precision, vec.y * LFloat.Precision);
+            return new LVector2(true,vec.x * LFloat.Precision, vec.y * LFloat.Precision);
         }
 
         public static LVector3 ToLVector3(this Vector3Int vec){
