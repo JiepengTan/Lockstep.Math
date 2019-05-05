@@ -1,6 +1,7 @@
 ﻿using System;
-using TreeEditor;
+#if UNITY_5_3_OR_NEWER 
 using UnityEngine;
+#endif
 
 namespace LockStepMath
 {
@@ -244,21 +245,6 @@ namespace LockStepMath
         public override int GetHashCode()
         {
             return this._x * 73856093 ^ this._y * 19349663 ^ this._z * 83492791;
-        }
-
-
-        public Vector3Int ToVector3Int
-        {
-            get { return new Vector3Int(x.ToInt, y.ToInt, z.ToInt); }
-        }
-
-        public Vector3 ToVector3
-        {
-            get
-            {
-                return new Vector3(_x * LFloat.PrecisionFactor, _y * LFloat.PrecisionFactor,
-                    _z * LFloat.PrecisionFactor);
-            }
         }
 
         

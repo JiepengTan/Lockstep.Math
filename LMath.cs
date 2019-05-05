@@ -244,6 +244,27 @@ namespace LockStepMath
             return val;
         }
 
+        public static LFloat Round(LFloat val){
+            if (val <= 0) {
+                var remainder = (-val._val) % LFloat.Precision;
+                if (remainder > LFloat.HalfPrecision) {
+                    return new LFloat(val._val + remainder - LFloat.Precision);
+                }
+                else {
+                    return new LFloat(val._val + remainder);
+                }
+            }
+            else {
+                var remainder = (val._val) % LFloat.Precision;
+                if (remainder > LFloat.HalfPrecision) {
+                    return new LFloat(val._val - remainder + LFloat.Precision);
+                }
+                else {
+                    return new LFloat(val._val - remainder);
+                }
+            }
+        }
+
         public static long Max(long a, long b)
         {
             return (a <= b) ? b : a;
@@ -262,6 +283,24 @@ namespace LockStepMath
         public static int Min(int a, int b)
         {
             return (a > b) ? b : a;
+        }
+
+        public static int FloorToInt(LFloat a)
+        {
+            return a._val / LFloat.Precision * LFloat.Precision;
+        }
+
+        public static LFloat ToLFloat(float a)
+        {
+            return  new LFloat((int)(a * LFloat.Precision));
+        }
+        public static LFloat ToLFloat(int a)
+        {
+            return  new LFloat((int)(a * LFloat.Precision));
+        }
+        public static LFloat ToLFloat(long a)
+        {
+            return  new LFloat((int)(a * LFloat.Precision));
         }
 
         public static LFloat Min(LFloat a, LFloat b)
