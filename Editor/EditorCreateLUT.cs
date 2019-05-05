@@ -1,4 +1,4 @@
-#if UnityEditor
+#if UNITY_EDITOR
 using System.IO;
 using System.Net;
 using System.Net.Mime;
