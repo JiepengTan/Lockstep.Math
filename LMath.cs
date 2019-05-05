@@ -327,7 +327,7 @@ namespace LockStepMath
 
         public static LVector3 Lerp(LVector3 a, LVector3 b, LFloat f)
         {
-            return new LVector3(
+            return new LVector3(true,
                 (int) (((long) (b._x - a._x) * f._val) / LFloat.Precision) + a._x,
                 (int) (((long) (b._y - a._y) * f._val) / LFloat.Precision) + a._y,
                 (int) (((long) (b._z - a._z) * f._val) / LFloat.Precision) + a._z);

@@ -31,38 +31,59 @@ namespace LockStepMath
         public int _z;
 
 
-        public static readonly LVector3 zero = new LVector3(0, 0, 0);
-        public static readonly LVector3 one = new LVector3(LFloat.Precision, LFloat.Precision, LFloat.Precision);
-        public static readonly LVector3 half = new LVector3(LFloat.Precision / 2, LFloat.Precision / 2,LFloat.Precision / 2);
+        public static readonly LVector3 zero = new LVector3(true,0, 0, 0);
+        public static readonly LVector3 one = new LVector3(true,LFloat.Precision, LFloat.Precision, LFloat.Precision);
+        public static readonly LVector3 half = new LVector3(true,LFloat.Precision / 2, LFloat.Precision / 2,LFloat.Precision / 2);
         
-        public static readonly LVector3 forward = new LVector3(0, 0, LFloat.Precision);
-        public static readonly LVector3 up = new LVector3(0, LFloat.Precision, 0);
-        public static readonly LVector3 right = new LVector3(LFloat.Precision, 0, 0);
-        public static readonly LVector3 back = new LVector3(0, 0, -LFloat.Precision);
-        public static readonly LVector3 down = new LVector3(0, -LFloat.Precision, 0);
-        public static readonly LVector3 left = new LVector3(-LFloat.Precision, 0, 0);
-
-        public LVector3(int _x, int _y, int _z)
+        public static readonly LVector3 forward = new LVector3(true,0, 0, LFloat.Precision);
+        public static readonly LVector3 up = new LVector3(true,0, LFloat.Precision, 0);
+        public static readonly LVector3 right = new LVector3(true,LFloat.Precision, 0, 0);
+        public static readonly LVector3 back = new LVector3(true,0, 0, -LFloat.Precision);
+        public static readonly LVector3 down = new LVector3(true,0, -LFloat.Precision, 0);
+        public static readonly LVector3 left = new LVector3(true,-LFloat.Precision, 0, 0);
+        
+        /// <summary>
+        /// 将这些值作为内部值 直接构造(高效) （仅用于内部实现，外部不建议使用）
+        /// </summary>
+        public LVector3(bool isUseRawVal,int _x, int _y, int _z)
         {
             this._x = _x;
             this._y = _y;
             this._z = _z;
         }
-
-        public LVector3(long _x, long _y, long _z)
+        /// <summary>
+        /// 将这些值作为内部值 直接构造(高效) （仅用于内部实现，外部不建议使用）
+        /// </summary>
+        public LVector3(bool isUseRawVal,long _x, long _y, long _z)
         {
             this._x = (int) _x;
             this._y = (int) _y;
             this._z = (int) _z;
         }
 
+        public LVector3(int _x, int _y, int _z)
+        {
+            this._x = _x * LFloat.Precision;
+            this._y = _y * LFloat.Precision;
+            this._z = _z * LFloat.Precision;
+        }
         public LVector3(LFloat x, LFloat y, LFloat z)
         {
             this._x = x._val;
             this._y = y._val;
             this._z = z._val;
         }
-
+        #if UNITY_EDITOR
+        /// <summary>
+        /// 直接使用浮点型 进行构造 警告!!! 仅应该在Editor模式下使用，不应该在正式代码中使用,避免出现引入浮点的不确定性
+        /// </summary>
+        public LVector3(bool shouldOnlyUseInEditor,float x, float y, float z)
+        {
+            this._x = (int)(x * LFloat.Precision);
+            this._y = (int)(y * LFloat.Precision);
+            this._z = (int)(z * LFloat.Precision);
+        }
+        #endif
 
         public LFloat magnitude
         {
@@ -89,7 +110,7 @@ namespace LockStepMath
 
         public LVector3 abs
         {
-            get { return new LVector3(LMath.Abs(this._x), LMath.Abs(this._y), LMath.Abs(this._z)); }
+            get { return new LVector3(true,LMath.Abs(this._x), LMath.Abs(this._y), LMath.Abs(this._z)); }
         }
 
         public LVector3 Normalize()
@@ -291,7 +312,7 @@ namespace LockStepMath
         
         public static LVector3 Cross(ref LVector3 lhs, ref LVector3 rhs)
         {
-            return new LVector3(
+            return new LVector3(true,
                 ((long) lhs._y * rhs._z - (long) lhs._z * rhs._y) / LFloat.Precision,
                 ((long) lhs._z * rhs._x - (long) lhs._x * rhs._z) / LFloat.Precision,
                 ((long) lhs._x * rhs._y - (long) lhs._y * rhs._x) / LFloat.Precision
@@ -300,7 +321,7 @@ namespace LockStepMath
 
         public static LVector3 Cross(LVector3 lhs, LVector3 rhs)
         {
-            return new LVector3(
+            return new LVector3(true,
                 ((long) lhs._y * rhs._z - (long) lhs._z * rhs._y) / LFloat.Precision,
                 ((long) lhs._z * rhs._x - (long) lhs._x * rhs._z) / LFloat.Precision,
                 ((long) lhs._x * rhs._y - (long) lhs._y * rhs._x) / LFloat.Precision
@@ -310,7 +331,7 @@ namespace LockStepMath
         
         public static LVector3 Lerp(LVector3 a, LVector3 b, LFloat f)
         {
-            return new LVector3(
+            return new LVector3(true,
                 (int) (((long) (b._x - a._x) * f._val) / LFloat.Precision) + a._x,
                 (int) (((long) (b._y - a._y) * f._val) / LFloat.Precision) + a._y,
                 (int) (((long) (b._z - a._z) * f._val) / LFloat.Precision) + a._z);

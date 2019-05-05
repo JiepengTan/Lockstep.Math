@@ -192,7 +192,7 @@ namespace LockStepMath {
 
         public static implicit operator LVector3(LVector2 v)
         {
-            return new LVector3(v._x, v._y, 0);
+            return new LVector3(true,v._x, v._y, 0);
         }
 
         public override bool Equals(object o){
@@ -213,7 +213,7 @@ namespace LockStepMath {
         }
 
         public LVector3 ToInt3 {
-            get { return new LVector3(_x, 0, _y); }
+            get { return new LVector3(true,_x, 0, _y); }
         }
 
         public LFloat this[int index] {

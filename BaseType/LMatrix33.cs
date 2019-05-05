@@ -9,8 +9,8 @@ namespace LockStepMath
         public static readonly LMatrix33
             zero = new LMatrix33(LVector3.zero, LVector3.zero, LVector3.zero);
 
-        public static readonly LMatrix33 identity = new LMatrix33(new LVector3(LFloat.Precision, 0, 0),
-            new LVector3(0, LFloat.Precision, 0), new LVector3(0, 0, LFloat.Precision));
+        public static readonly LMatrix33 identity = new LMatrix33(new LVector3(true,LFloat.Precision, 0, 0),
+            new LVector3(true,0, LFloat.Precision, 0), new LVector3(true,0, 0, LFloat.Precision));
 
         // mRowCol  列优先存储
         public int m00;
@@ -184,11 +184,11 @@ namespace LockStepMath
             switch (index)
             {
                 case 0:
-                    return new LVector3(this.m00, this.m10, this.m20);
+                    return new LVector3(true,this.m00, this.m10, this.m20);
                 case 1:
-                    return new LVector3(this.m01, this.m11, this.m21);
+                    return new LVector3(true,this.m01, this.m11, this.m21);
                 case 2:
-                    return new LVector3(this.m02, this.m12, this.m22);
+                    return new LVector3(true,this.m02, this.m12, this.m22);
                 default:
                     throw new IndexOutOfRangeException("Invalid column index!");
             }
@@ -203,11 +203,11 @@ namespace LockStepMath
             switch (index)
             {
                 case 0:
-                    return new LVector3(this.m00, this.m01, this.m02);
+                    return new LVector3(true,this.m00, this.m01, this.m02);
                 case 1:
-                    return new LVector3(this.m10, this.m11, this.m12);
+                    return new LVector3(true,this.m10, this.m11, this.m12);
                 case 2:
-                    return new LVector3(this.m20, this.m21, this.m22);
+                    return new LVector3(true,this.m20, this.m21, this.m22);
                 default:
                     throw new IndexOutOfRangeException("Invalid row index!");
             }
