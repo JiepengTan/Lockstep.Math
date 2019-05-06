@@ -50,23 +50,23 @@ namespace LockStepMath
                 switch (index)
                 {
                     case 0:
-                        return new LFloat(this.m00);
+                        return new LFloat(true,this.m00);
                     case 1:
-                        return new LFloat(this.m10);
+                        return new LFloat(true,this.m10);
                     case 2:
-                        return new LFloat(this.m20);
+                        return new LFloat(true,this.m20);
                     case 3:
-                        return new LFloat(this.m01);
+                        return new LFloat(true,this.m01);
                     case 4:
-                        return new LFloat(this.m11);
+                        return new LFloat(true,this.m11);
                     case 5:
-                        return new LFloat(this.m21);
+                        return new LFloat(true,this.m21);
                     case 6:
-                        return new LFloat(this.m02);
+                        return new LFloat(true,this.m02);
                     case 7:
-                        return new LFloat(this.m12);
+                        return new LFloat(true,this.m12);
                     case 8:
-                        return new LFloat(this.m22);
+                        return new LFloat(true,this.m22);
                     default:
                         throw new IndexOutOfRangeException("Invalid matrix index!");
                 }

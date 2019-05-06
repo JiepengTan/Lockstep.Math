@@ -42,7 +42,7 @@ namespace LockStepMath
             //    int num = (int) (val._val * (long) LUTAsin.HALF_COUNT / LFloat.Precision) +
             //              LUTAsin.HALF_COUNT;
             //    num = Mathf.Clamp(num, 0, LUTAsin.COUNT);
-            //    return new LFloat((long) LUTAsin.table[num] / 10);
+            //    return new LFloat(true,(long) LUTAsin.table[num] / 10);
             //}
             StringBuilder sb = new StringBuilder();
             //

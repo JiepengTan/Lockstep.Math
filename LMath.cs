@@ -6,8 +6,8 @@ namespace LockStepMath
 {
     public static partial class LMath
     {
-        public static readonly LFloat PI = new LFloat(3142);
-        public static readonly LFloat PI2 = new LFloat(6283);
+        public static readonly LFloat PI = new LFloat(true,3142);
+        public static readonly LFloat PI2 = new LFloat(true,6283);
         public static readonly LFloat Rad2Deg = 180 / PI;
         public static readonly LFloat Deg2Rad = PI / 180;
 
@@ -59,7 +59,7 @@ namespace LockStepMath
             int num4 = (int) ((long) x * num3 / b);
             int num5 = (int) ((long) y * num3 / b);
             int num6 = LUTAtan2.table[num5 * dIM + num4];
-            return new LFloat((long) ((num6 + num2) * num) / 10);
+            return new LFloat(true,(long) ((num6 + num2) * num) / 10);
         }
 
         public static LFloat Acos(LFloat val)
@@ -67,7 +67,7 @@ namespace LockStepMath
             int num = (int) (val._val * (long) LUTAcos.HALF_COUNT / LFloat.Precision) +
                       LUTAcos.HALF_COUNT;
             num = Mathf.Clamp(num, 0, LUTAcos.COUNT);
-            return new LFloat((long) LUTAcos.table[num] / 10);
+            return new LFloat(true,(long) LUTAcos.table[num] / 10);
         }
 
         public static LFloat Asin(LFloat val)
@@ -75,26 +75,26 @@ namespace LockStepMath
             int num = (int) (val._val * (long) LUTAsin.HALF_COUNT / LFloat.Precision) +
                       LUTAsin.HALF_COUNT;
             num = Mathf.Clamp(num, 0, LUTAsin.COUNT);
-            return new LFloat((long) LUTAsin.table[num] / 10);
+            return new LFloat(true,(long) LUTAsin.table[num] / 10);
         }
 
         public static LFloat Sin(LFloat radians)
         {
             int index = LUTSinCos.getIndex(radians);
-            return new LFloat((long) LUTSinCos.sin_table[index] / 10);
+            return new LFloat(true,(long) LUTSinCos.sin_table[index] / 10);
         }
 
         public static LFloat Cos(LFloat radians)
         {
             int index = LUTSinCos.getIndex(radians);
-            return new LFloat((long) LUTSinCos.cos_table[index] / 10);
+            return new LFloat(true,(long) LUTSinCos.cos_table[index] / 10);
         }
 
         public static void SinCos(out LFloat s, out LFloat c, LFloat radians)
         {
             int index = LUTSinCos.getIndex(radians);
-            s = new LFloat((long) LUTSinCos.sin_table[index] / 10);
-            c = new LFloat((long) LUTSinCos.cos_table[index] / 10);
+            s = new LFloat(true,(long) LUTSinCos.sin_table[index] / 10);
+            c = new LFloat(true,(long) LUTSinCos.cos_table[index] / 10);
         }
 
         public static uint Sqrt32(uint a)
@@ -171,7 +171,7 @@ namespace LockStepMath
                 return LFloat.zero;
             }
 
-            return new LFloat(Sqrt((long) a._val * LFloat.Precision));
+            return new LFloat(true,Sqrt((long) a._val * LFloat.Precision));
         }
 
         public static LFloat Sqr(LFloat a){
@@ -238,7 +238,7 @@ namespace LockStepMath
         {
             if (val._val < 0)
             {
-                return new LFloat(-val._val);
+                return new LFloat(true,-val._val);
             }
 
             return val;
@@ -248,19 +248,19 @@ namespace LockStepMath
             if (val <= 0) {
                 var remainder = (-val._val) % LFloat.Precision;
                 if (remainder > LFloat.HalfPrecision) {
-                    return new LFloat(val._val + remainder - LFloat.Precision);
+                    return new LFloat(true,val._val + remainder - LFloat.Precision);
                 }
                 else {
-                    return new LFloat(val._val + remainder);
+                    return new LFloat(true,val._val + remainder);
                 }
             }
             else {
                 var remainder = (val._val) % LFloat.Precision;
                 if (remainder > LFloat.HalfPrecision) {
-                    return new LFloat(val._val - remainder + LFloat.Precision);
+                    return new LFloat(true,val._val - remainder + LFloat.Precision);
                 }
                 else {
-                    return new LFloat(val._val - remainder);
+                    return new LFloat(true,val._val - remainder);
                 }
             }
         }
@@ -292,30 +292,30 @@ namespace LockStepMath
 
         public static LFloat ToLFloat(float a)
         {
-            return  new LFloat((int)(a * LFloat.Precision));
+            return  new LFloat(true,(int)(a * LFloat.Precision));
         }
         public static LFloat ToLFloat(int a)
         {
-            return  new LFloat((int)(a * LFloat.Precision));
+            return  new LFloat(true,(int)(a * LFloat.Precision));
         }
         public static LFloat ToLFloat(long a)
         {
-            return  new LFloat((int)(a * LFloat.Precision));
+            return  new LFloat(true,(int)(a * LFloat.Precision));
         }
 
         public static LFloat Min(LFloat a, LFloat b)
         {
-            return new LFloat(Min(a._val, b._val));
+            return new LFloat(true,Min(a._val, b._val));
         }
 
         public static LFloat Max(LFloat a, LFloat b)
         {
-            return new LFloat(Max(a._val, b._val));
+            return new LFloat(true,Max(a._val, b._val));
         }
 
         public static LFloat Lerp(LFloat a, LFloat b, LFloat f)
         {
-            return new LFloat((int) (((long) (b._val - a._val) * f._val) / LFloat.Precision) + a._val);
+            return new LFloat(true,(int) (((long) (b._val - a._val) * f._val) / LFloat.Precision) + a._val);
         }
 
         public static LVector2 Lerp(LVector2 a, LVector2 b, LFloat f)

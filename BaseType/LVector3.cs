@@ -10,19 +10,19 @@ namespace LockStepMath
     {
         public LFloat x
         {
-            get { return new LFloat(_x); }
+            get { return new LFloat(true,_x); }
             set { _x = value._val ; }
         }
 
         public LFloat y
         {
-            get { return new LFloat(_y); }
+            get { return new LFloat(true,_y); }
             set { _y = value._val ; }
         }
 
         public LFloat z
         {
-            get { return new LFloat(_z); }
+            get { return new LFloat(true,_z); }
             set { _z = value._val ; }
         }
 
@@ -92,7 +92,7 @@ namespace LockStepMath
                 long num = (long) this._x;
                 long num2 = (long) this._y;
                 long num3 = (long) this._z;
-                return new LFloat(LMath.Sqrt(num * num + num2 * num2 + num3 * num3));
+                return new LFloat(true,LMath.Sqrt(num * num + num2 * num2 + num3 * num3));
             }
         }
 
@@ -104,7 +104,7 @@ namespace LockStepMath
                 long num = (long) this._x;
                 long num2 = (long) this._y;
                 long num3 = (long) this._z;
-                return new LFloat((num * num + num2 * num2 + num3 * num3) / LFloat.Precision);
+                return new LFloat(true,(num * num + num2 * num2 + num3 * num3) / LFloat.Precision);
             }
         }
 
@@ -164,7 +164,7 @@ namespace LockStepMath
         {
             LFloat s;
             LFloat c;
-            LMath.SinCos(out s, out c, new LFloat(degree._val * 31416L / 1800000L));
+            LMath.SinCos(out s, out c, new LFloat(true,degree._val * 31416L / 1800000L));
             LVector3 vInt;
             vInt._x = (int) (((long) this._x * s._val + (long) this._z * c._val) / LFloat.Precision);
             vInt._z = (int) (((long) this._x * -c._val + (long) this._z * s._val) / LFloat.Precision);
@@ -300,13 +300,13 @@ namespace LockStepMath
         public static LFloat Dot(ref LVector3 lhs, ref LVector3 rhs)
         {
             var val = ((long) lhs._x) * rhs._x + ((long) lhs._y) * rhs._y + ((long) lhs._z) * rhs._z;
-            return new LFloat(val / LFloat.Precision);
+            return new LFloat(true,val / LFloat.Precision);
         }
 
         public static LFloat Dot(LVector3 lhs, LVector3 rhs)
         {
             var val = ((long) lhs._x) * rhs._x + ((long) lhs._y) * rhs._y + ((long) lhs._z) * rhs._z;
-            return new LFloat(val / LFloat.Precision);
+            return new LFloat(true,val / LFloat.Precision);
             ;
         }
         

@@ -8,11 +8,11 @@ namespace LockStepMath {
     [Serializable]
     public struct LVector2 {
         public LFloat x {
-            get { return new LFloat(_x); }
+            get { return new LFloat(true,_x); }
         }
 
         public LFloat y {
-            get { return new LFloat(_y); }
+            get { return new LFloat(true,_y); }
         }
 
         public int _x;
@@ -128,7 +128,7 @@ namespace LockStepMath {
             get {
                 long num = (long) this._x;
                 long num2 = (long) this._y;
-                return new LFloat((num * num + num2 * num2) / LFloat.Precision);
+                return new LFloat(true,(num * num + num2 * num2) / LFloat.Precision);
             }
         }
 
@@ -144,7 +144,7 @@ namespace LockStepMath {
             get {
                 long num = (long) this._x;
                 long num2 = (long) this._y;
-                return new LFloat(LMath.Sqrt(num * num + num2 * num2));
+                return new LFloat(true,LMath.Sqrt(num * num + num2 * num2));
             }
         }
 
@@ -251,11 +251,11 @@ namespace LockStepMath {
 
 
         public static LFloat Dot(LVector2 u, LVector2 v){
-            return new LFloat(((long) u._x * v._x + (long) u._y * v._y) / LFloat.Precision);
+            return new LFloat(true,((long) u._x * v._x + (long) u._y * v._y) / LFloat.Precision);
         }
 
         public static LFloat Cross(LVector2 a, LVector2 b){
-            return new LFloat(((long) a._x * (long) b._y - (long) a._y * (long) b._x) / LFloat.Precision);
+            return new LFloat(true,((long) a._x * (long) b._y - (long) a._y * (long) b._x) / LFloat.Precision);
         }
 
         public static LVector2 Lerp(LVector2 a, LVector2 b, LFloat f){

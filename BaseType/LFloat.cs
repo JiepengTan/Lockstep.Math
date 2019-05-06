@@ -10,19 +10,19 @@ namespace LockStepMath {
 
         public int _val;
 
-        public static readonly LFloat zero = new LFloat(0);
-        public static readonly LFloat one = new LFloat(LFloat.Precision);
-        public static readonly LFloat half = new LFloat(LFloat.Precision / 2);
-        public static readonly LFloat FLT_MAX = new LFloat(int.MaxValue);
-        public static readonly LFloat FLT_MIN = new LFloat(int.MinValue);
-        public static readonly LFloat EPSILON = new LFloat(1);
-        public static readonly LFloat INTERVAL_EPSI_LON = new LFloat(1);
+        public static readonly LFloat zero = new LFloat(true,0);
+        public static readonly LFloat one = new LFloat(true,LFloat.Precision);
+        public static readonly LFloat half = new LFloat(true,LFloat.Precision / 2);
+        public static readonly LFloat FLT_MAX = new LFloat(true,int.MaxValue);
+        public static readonly LFloat FLT_MIN = new LFloat(true,int.MinValue);
+        public static readonly LFloat EPSILON = new LFloat(true,1);
+        public static readonly LFloat INTERVAL_EPSI_LON = new LFloat(true,1);
 
         /// <summary>
         /// 传入的是正常数放大1000 的数值
         /// </summary>
         /// <param name="rawVal"></param>
-        public LFloat(int rawVal){
+        public LFloat(bool isUseRawVal,int rawVal){
             this._val = rawVal;
         }
 
@@ -30,13 +30,26 @@ namespace LockStepMath {
         /// 传入的是正常数放大1000 的数值
         /// </summary>
         /// <param name="rawVal"></param>
-        public LFloat(long rawVal){
+        public LFloat(bool isUseRawVal,long rawVal){
             this._val = (int) (rawVal);
         }
 
-        public LFloat(LFloat rhs){
-            this._val = rhs._val;
+        public LFloat(int val){
+            this._val = val * LFloat.Precision;
         }
+        public LFloat(long val){
+            this._val = (int)(val * LFloat.Precision);
+        }
+
+        #if UNITY_EDITOR
+        /// <summary>
+        /// 直接使用浮点型 进行构造 警告!!! 仅应该在Editor模式下使用，不应该在正式代码中使用,避免出现引入浮点的不确定性
+        /// </summary>
+        public LFloat(bool shouldOnlyUseInEditor,float val)
+        {
+            this._val = (int)(val * LFloat.Precision);
+        }
+        #endif
 
         #region override operator 
 
@@ -65,61 +78,61 @@ namespace LockStepMath {
         }
 
         public static LFloat operator +(LFloat a, LFloat b){
-            return new LFloat(a._val + b._val);
+            return new LFloat(true,a._val + b._val);
         }
 
         public static LFloat operator -(LFloat a, LFloat b){
-            return new LFloat(a._val - b._val);
+            return new LFloat(true,a._val - b._val);
         }
 
         public static LFloat operator *(LFloat a, LFloat b){
             long val = (long) (a._val) * b._val;
-            return new LFloat((int) (val / 1000));
+            return new LFloat(true,(int) (val / 1000));
         }
 
         public static LFloat operator /(LFloat a, LFloat b){
             long val = (long) (a._val * 1000) / b._val;
-            return new LFloat((int) (val));
+            return new LFloat(true,(int) (val));
         }
 
         public static LFloat operator -(LFloat a){
-            return new LFloat(-a._val);
+            return new LFloat(true,-a._val);
         }
 
 
         #region adapt for int
 
         public static LFloat operator +(LFloat a, int b){
-            return new LFloat(a._val + b * Precision);
+            return new LFloat(true,a._val + b * Precision);
         }
 
         public static LFloat operator -(LFloat a, int b){
-            return new LFloat(a._val - b * Precision);
+            return new LFloat(true,a._val - b * Precision);
         }
 
         public static LFloat operator *(LFloat a, int b){
-            return new LFloat((a._val * b));
+            return new LFloat(true,(a._val * b));
         }
 
         public static LFloat operator /(LFloat a, int b){
-            return new LFloat((a._val) / b);
+            return new LFloat(true,(a._val) / b);
         }
 
 
         public static LFloat operator +(int a, LFloat b){
-            return new LFloat(b._val + a * Precision);
+            return new LFloat(true,b._val + a * Precision);
         }
 
         public static LFloat operator -(int a, LFloat b){
-            return new LFloat(a * Precision - b._val);
+            return new LFloat(true,a * Precision - b._val);
         }
 
         public static LFloat operator *(int a, LFloat b){
-            return new LFloat((b._val * a));
+            return new LFloat(true,(b._val * a));
         }
 
         public static LFloat operator /(int a, LFloat b){
-            return new LFloat((int) ((long) (a * Precision * Precision) / b._val));
+            return new LFloat(true,(int) ((long) (a * Precision * Precision) / b._val));
         }
 
 
@@ -203,7 +216,7 @@ namespace LockStepMath {
         #region override type convert 
 
         public static explicit operator LFloat(int value){
-            return new LFloat(value * Precision);
+            return new LFloat(true,value * Precision);
         }
 
         public static explicit operator int(LFloat value){
@@ -211,7 +224,7 @@ namespace LockStepMath {
         }
 
         public static explicit operator LFloat(long value){
-            return new LFloat(value * Precision);
+            return new LFloat(true,value * Precision);
         }
 
         public static explicit operator long(LFloat value){
@@ -220,7 +233,7 @@ namespace LockStepMath {
 
 
         public static explicit operator LFloat(float value){
-            return new LFloat((long) (value * Precision));
+            return new LFloat(true,(long) (value * Precision));
         }
 
         public static explicit operator float(LFloat value){
@@ -228,7 +241,7 @@ namespace LockStepMath {
         }
 
         public static explicit operator LFloat(double value){
-            return new LFloat((long) (value * Precision));
+            return new LFloat(true,(long) (value * Precision));
         }
 
         public static explicit operator double(LFloat value){

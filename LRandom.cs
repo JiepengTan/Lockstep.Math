@@ -54,7 +54,7 @@ namespace LockStepMath {
                     string.Format("'{0}' cannot be greater than {1}.", min, max));
 
             uint num = (uint) (max._val - min._val);
-            return new LFloat(Next(num) + min._val);
+            return new LFloat(true,Next(num) + min._val);
         }
     }
 }
