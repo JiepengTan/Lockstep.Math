@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 using LockStepMath;
 
 namespace LockStepMath
@@ -66,15 +65,15 @@ namespace LockStepMath
         {
             int num = (int) (val._val * (long) LUTAcos.HALF_COUNT / LFloat.Precision) +
                       LUTAcos.HALF_COUNT;
-            num = Mathf.Clamp(num, 0, LUTAcos.COUNT);
+            num = Clamp(num, 0, LUTAcos.COUNT);
             return new LFloat(true,(long) LUTAcos.table[num] / 10);
         }
-
+        
         public static LFloat Asin(LFloat val)
         {
             int num = (int) (val._val * (long) LUTAsin.HALF_COUNT / LFloat.Precision) +
                       LUTAsin.HALF_COUNT;
-            num = Mathf.Clamp(num, 0, LUTAsin.COUNT);
+            num = Clamp(num, 0, LUTAsin.COUNT);
             return new LFloat(true,(long) LUTAsin.table[num] / 10);
         }
 
@@ -176,6 +175,17 @@ namespace LockStepMath
 
         public static LFloat Sqr(LFloat a){
             return a * a;
+        }
+
+        
+
+        public static int Clamp(int value, int min, int max)
+        {
+            if (value < min)
+                value = min;
+            else if (value > max)
+                value = max;
+            return value;
         }
 
         public static long Clamp(long a, long min, long max)
