@@ -101,13 +101,13 @@ namespace LockStepMath {
         }
 
         public void Min(ref LVector2 r){
-            this._x = Mathf.Min(this._x, r._x);
-            this._y = Mathf.Min(this._y, r._y);
+            this._x = LMath.Min(this._x, r._x);
+            this._y = LMath.Min(this._y, r._y);
         }
 
         public void Max(ref LVector2 r){
-            this._x = Mathf.Max(this._x, r._x);
-            this._y = Mathf.Max(this._y, r._y);
+            this._x = LMath.Max(this._x, r._x);
+            this._y = LMath.Max(this._y, r._y);
         }
 
 

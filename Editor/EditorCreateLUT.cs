@@ -27,11 +27,11 @@ namespace LockStepMath
 		public static readonly int[] table;
 		static LUTAsin()
 		{
-			COUNT = #COUNT_VAL;
+			COUNT = $COUNT_VAL;
 			HALF_COUNT = COUNT >> 1;
 			table = new int[]
 			{
-#ALL_VALUES
+$ALL_VALUES
 			};
 		}
 	}
@@ -62,8 +62,8 @@ namespace LockStepMath
 	            }
             }
             
-            content = content.Replace("#COUNT_VAL",count.ToString())
-	            .Replace("#ALL_VALUES", sb.ToString());
+            content = content.Replace("$COUNT_VAL",count.ToString())
+	            .Replace("$ALL_VALUES", sb.ToString());
             //save to files
             File.WriteAllText(fileName,content);
 			AssetDatabase.Refresh();
