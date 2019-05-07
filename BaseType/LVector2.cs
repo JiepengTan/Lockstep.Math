@@ -93,11 +93,11 @@ namespace Lockstep.Math {
         }
 
         public static LVector2 Min(LVector2 a, LVector2 b){
-            return new LVector2(true,Math.Min(a._x, b._x), Math.Min(a._y, b._y));
+            return new LVector2(true,LMath.Min(a._x, b._x), LMath.Min(a._y, b._y));
         }
 
         public static LVector2 Max(LVector2 a, LVector2 b){
-            return new LVector2(true,Math.Max(a._x, b._x), Math.Max(a._y, b._y));
+            return new LVector2(true,LMath.Max(a._x, b._x), LMath.Max(a._y, b._y));
         }
 
         public void Min(ref LVector2 r){
