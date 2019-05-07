@@ -1,9 +1,9 @@
 #if UNITY_5_3_OR_NEWER
 using UnityEngine;
 #endif
-using LockStepMath;
+using Lockstep.Math;
 
-namespace LockStepMath {
+namespace Lockstep.Math {
 #if UNITY_5_3_OR_NEWER
     public static partial class LMathExtension {
         public static Vector2Int Floor(this LVector2 vec){

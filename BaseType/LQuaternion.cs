@@ -1,6 +1,6 @@
 ﻿using System;
-using LockStepMath;
-using static LockStepMath.LVector3;
+using Lockstep.Math;
+using static Lockstep.Math.LVector3;
 
 namespace LockStepLMath {
     public struct LQuaternion {

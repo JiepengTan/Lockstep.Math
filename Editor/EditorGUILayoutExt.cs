@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using UnityEngine;
-using LockStepMath;
+using Lockstep.Math;
 
 namespace UnityEditor {
     public static class EditorGUILayoutExt {

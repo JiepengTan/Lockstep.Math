@@ -2,9 +2,9 @@
 #if UNITY_5_3_OR_NEWER
 using UnityEngine;
 #endif
-using LockStepMath;
+using Lockstep.Math;
 
-namespace LockStepMath {
+namespace Lockstep.Math {
     [Serializable]
     public struct LVector2 {
         public LFloat x {

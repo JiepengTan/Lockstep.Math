@@ -1,8 +1,8 @@
-using LockStepMath;
-using static LockStepMath.LMath;
+using Lockstep.Math;
+using static Lockstep.Math.LMath;
 using System;
 
-namespace LockStepMath
+namespace Lockstep.Math
 {
     public struct LMatrix33 : IEquatable<LMatrix33>
     {

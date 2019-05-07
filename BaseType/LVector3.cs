@@ -3,7 +3,7 @@
 using UnityEngine;
 #endif
 
-namespace LockStepMath
+namespace Lockstep.Math
 {
     [Serializable]
     public struct LVector3 : IEquatable<LVector3>

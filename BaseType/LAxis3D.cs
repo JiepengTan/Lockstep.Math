@@ -1,7 +1,7 @@
-using LockStepMath;
-using static LockStepMath.LVector3;
+using Lockstep.Math;
+using static Lockstep.Math.LVector3;
 
-namespace LockStepMath
+namespace Lockstep.Math
 {
     public struct LAxis3D
     {

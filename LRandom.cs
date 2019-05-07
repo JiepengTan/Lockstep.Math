@@ -1,7 +1,7 @@
 ﻿using System;
-using LockStepMath;
+using Lockstep.Math;
 
-namespace LockStepMath {
+namespace Lockstep.Math {
 //TODO 查gcc random 源码 替换之
     public class LRandom {
         public static int count = 0;
