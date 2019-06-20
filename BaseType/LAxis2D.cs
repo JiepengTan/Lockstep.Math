@@ -1,7 +1,7 @@
-using LockStepMath;
-using static LockStepMath.LMath;
+using Lockstep.Math;
+using static Lockstep.Math.LMath;
 
-namespace LockStepMath
+namespace Lockstep.Math
 {
    
     public struct LAxis2D

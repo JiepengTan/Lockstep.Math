@@ -1,4 +1,4 @@
-#if UnityEditor
+#if UNITY_EDITOR
 using System.IO;
 using System.Net;
 using System.Net.Mime;
@@ -6,19 +6,19 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace LockStepMath
+namespace Lockstep.Math
 {
     public static class EditorCreateLUT
     {
-	    [MenuItem("LockStepMath/CreateLUTAsin")]
+	    [MenuItem("Lockstep.Math/CreateLUTAsin")]
         static void  CreateLUTAsin()
         {
-            string fileName = Application.dataPath + "/LockStepMath/LUT/LUTAsin.cs";
+            string fileName = Application.dataPath + "/Lockstep.Math/LUT/LUTAsin.cs";
             const int count = 1024;
             const int percision = 10000;
             string content = @"using System;
-using LockStepMath;
-namespace LockStepMath
+using Lockstep.Math;
+namespace Lockstep.Math
 {
 	public static class LUTAsin
 	{
@@ -27,11 +27,11 @@ namespace LockStepMath
 		public static readonly int[] table;
 		static LUTAsin()
 		{
-			COUNT = #COUNT_VAL;
+			COUNT = $COUNT_VAL;
 			HALF_COUNT = COUNT >> 1;
 			table = new int[]
 			{
-#ALL_VALUES
+$ALL_VALUES
 			};
 		}
 	}
@@ -42,7 +42,7 @@ namespace LockStepMath
             //    int num = (int) (val._val * (long) LUTAsin.HALF_COUNT / LFloat.Precision) +
             //              LUTAsin.HALF_COUNT;
             //    num = Mathf.Clamp(num, 0, LUTAsin.COUNT);
-            //    return new LFloat((long) LUTAsin.table[num] / 10);
+            //    return new LFloat(true,(long) LUTAsin.table[num] / 10);
             //}
             StringBuilder sb = new StringBuilder();
             //
@@ -62,8 +62,8 @@ namespace LockStepMath
 	            }
             }
             
-            content = content.Replace("#COUNT_VAL",count.ToString())
-	            .Replace("#ALL_VALUES", sb.ToString());
+            content = content.Replace("$COUNT_VAL",count.ToString())
+	            .Replace("$ALL_VALUES", sb.ToString());
             //save to files
             File.WriteAllText(fileName,content);
 			AssetDatabase.Refresh();
