@@ -11,11 +11,11 @@ public class EditorLVector2 : UnityEditor.PropertyDrawer {
         var xProperty = property.FindPropertyRelative("_x");
         var yProperty = property.FindPropertyRelative("_y");
         float LabelWidth = EditorGUIUtility.labelWidth - EditorLVectorDrawTool.LableWidthOffset;
-        float lableWid = 20;
+        float lableWid = EditorLVectorDrawTool.LableWid;
 
         var labelRect = new Rect(position.x, position.y, LabelWidth, position.height);
         EditorGUI.LabelField(labelRect, label);
-        float filedWid = (position.width - LabelWidth) / 2 - EditorLVectorDrawTool.LableWid;
+        float filedWid = (position.width - LabelWidth) / 2 - lableWid;
         float initX = position.x + LabelWidth;
         float offset = 0;
         EditorLVectorDrawTool.DrawField(position, initX, ref offset, lableWid, filedWid, xProperty, new GUIContent("x:"));
