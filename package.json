@@ -1,0 +1,7 @@
+{
+  "name": "com.gamestan.lockstepmath",
+  "displayName": "Lockstep.Math",
+  "version": "0.1.0",
+  "unity": "2019.3",
+  "description": "A deterministic math lib for lockstep game"
+}
