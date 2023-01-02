@@ -1,4 +1,6 @@
-﻿#if UNITY_EDITOR
+//https://github.com/JiepengTan/LockstepMath
+
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using Lockstep.Math;

@@ -1,8 +1,10 @@
-﻿using System;
+﻿//https://github.com/JiepengTan/LockstepMath
+
+using System;
 using Lockstep.Math;
 using static Lockstep.Math.LVector3;
 
-namespace LockStepLMath {
+namespace Lockstep.Math {
     public struct LQuaternion {
         #region public members
 

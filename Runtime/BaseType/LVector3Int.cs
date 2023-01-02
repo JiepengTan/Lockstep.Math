@@ -1,3 +1,5 @@
+//https://github.com/JiepengTan/LockstepMath
+
 // Decompiled with JetBrains decompiler
 // Type: UnityEngine.Vector3Int
 // Assembly: UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -8,6 +10,7 @@ using System;
 using Lockstep.Math;
 
 namespace Lockstep.Math {
+    [System.Serializable]
     /// <summary>
     ///   <para>Representation of 3D vectors and points using integers.</para>
     /// </summary>
@@ -43,38 +46,14 @@ namespace Lockstep.Math {
         private static readonly LVector3Int s_Down = new LVector3Int(0, -1, 0);
         private static readonly LVector3Int s_Left = new LVector3Int(-1, 0, 0);
         private static readonly LVector3Int s_Right = new LVector3Int(1, 0, 0);
-        private int m_X;
-        private int m_Y;
-        private int m_Z;
+        public int x;
+        public int y;
+        public int z;
 
         public LVector3Int(int x, int y, int z){
-            this.m_X = x;
-            this.m_Y = y;
-            this.m_Z = z;
-        }
-
-        /// <summary>
-        ///   <para>X component of the vector.</para>
-        /// </summary>
-        public int x {
-            get { return this.m_X; }
-            set { this.m_X = value; }
-        }
-
-        /// <summary>
-        ///   <para>Y component of the vector.</para>
-        /// </summary>
-        public int y {
-            get { return this.m_Y; }
-            set { this.m_Y = value; }
-        }
-
-        /// <summary>
-        ///   <para>Z component of the vector.</para>
-        /// </summary>
-        public int z {
-            get { return this.m_Z; }
-            set { this.m_Z = value; }
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         /// <summary>
@@ -84,9 +63,9 @@ namespace Lockstep.Math {
         /// <param name="y"></param>
         /// <param name="z"></param>
         public void Set(int x, int y, int z){
-            this.m_X = x;
-            this.m_Y = y;
-            this.m_Z = z;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         public int this[int index] {

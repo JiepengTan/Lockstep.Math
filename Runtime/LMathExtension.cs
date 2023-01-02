@@ -1,3 +1,7 @@
+//https://github.com/JiepengTan/LockstepMath
+
+
+using Lockstep.UnsafeCollision2D;
 #if UNITY_5_3_OR_NEWER
 using UnityEngine;
 #endif
@@ -40,15 +44,28 @@ namespace Lockstep.Math {
                 LMath.ToLFloat(vec.y),
                 LMath.ToLFloat(vec.z));
         }
-
+        public static LVector2 ToLVector2XZ(this Vector3 vec){
+            return new LVector2(
+                LMath.ToLFloat(vec.x),
+                LMath.ToLFloat(vec.z));
+        }
         public static Vector2 ToVector2(this LVector2 vec){
             return new Vector2(vec.x.ToFloat(), vec.y.ToFloat());
         }
         public static Vector3 ToVector3(this LVector2 vec){
             return new Vector3(vec.x.ToFloat(), vec.y.ToFloat(),0);
         }
+        public static Vector3 ToVector3XZ(this LVector2 vec,LFloat y){
+            return new Vector3(vec.x.ToFloat(), y.ToFloat(),vec.y.ToFloat());
+        }
+        public static Vector3 ToVector3XZ(this LVector2 vec){
+            return new Vector3(vec.x.ToFloat(), 0,vec.y.ToFloat());
+        }
         public static Vector3 ToVector3(this LVector3 vec){
             return new Vector3(vec.x.ToFloat(), vec.y.ToFloat(), vec.z.ToFloat());
+        }
+        public static Rect ToRect(this LRect vec){
+            return new Rect(vec.position.ToVector2(),vec.size.ToVector2());
         }
     }
 #endif

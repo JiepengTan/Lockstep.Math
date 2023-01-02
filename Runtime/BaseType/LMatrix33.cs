@@ -1,3 +1,5 @@
+//https://github.com/JiepengTan/LockstepMath
+
 using Lockstep.Math;
 using static Lockstep.Math.LMath;
 using System;
@@ -13,15 +15,15 @@ namespace Lockstep.Math
             new LVector3(true,0, LFloat.Precision, 0), new LVector3(true,0, 0, LFloat.Precision));
 
         // mRowCol  列优先存储
-        public int m00;
-        public int m10;
-        public int m20;
-        public int m01;
-        public int m11;
-        public int m21;
-        public int m02;
-        public int m12;
-        public int m22;
+        public long m00;
+        public long m10;
+        public long m20;
+        public long m01;
+        public long m11;
+        public long m21;
+        public long m02;
+        public long m12;
+        public long m22;
 
         public LMatrix33(LVector3 column0, LVector3 column1, LVector3 column2)
         {
@@ -50,23 +52,23 @@ namespace Lockstep.Math
                 switch (index)
                 {
                     case 0:
-                        return new LFloat(true,this.m00);
+                        return new LFloat(true, this.m00);
                     case 1:
-                        return new LFloat(true,this.m10);
+                        return new LFloat(true, this.m10);
                     case 2:
-                        return new LFloat(true,this.m20);
+                        return new LFloat(true, this.m20);
                     case 3:
-                        return new LFloat(true,this.m01);
+                        return new LFloat(true, this.m01);
                     case 4:
-                        return new LFloat(true,this.m11);
+                        return new LFloat(true, this.m11);
                     case 5:
-                        return new LFloat(true,this.m21);
+                        return new LFloat(true, this.m21);
                     case 6:
-                        return new LFloat(true,this.m02);
+                        return new LFloat(true, this.m02);
                     case 7:
-                        return new LFloat(true,this.m12);
+                        return new LFloat(true, this.m12);
                     case 8:
-                        return new LFloat(true,this.m22);
+                        return new LFloat(true, this.m22);
                     default:
                         throw new IndexOutOfRangeException("Invalid matrix index!");
                 }
@@ -131,23 +133,23 @@ namespace Lockstep.Math
         public static LMatrix33 operator *(LMatrix33 lhs, LMatrix33 rhs)
         {
             LMatrix33 mat;
-            mat.m00 = (int) (((long) lhs.m00 * (long) rhs.m00 + (long) lhs.m01 * (long) rhs.m10 +
-                              (long) lhs.m02 * (long) rhs.m20) / LFloat.Precision);
-            mat.m01 = (int) (((long) lhs.m00 * (long) rhs.m01 + (long) lhs.m01 * (long) rhs.m11 +
-                              (long) lhs.m02 * (long) rhs.m21) / LFloat.Precision);
-            mat.m02 = (int) (((long) lhs.m00 * (long) rhs.m02 + (long) lhs.m01 * (long) rhs.m12 +
-                              (long) lhs.m02 * (long) rhs.m22) / LFloat.Precision);
-            mat.m10 = (int) (((long) lhs.m10 * (long) rhs.m00 + (long) lhs.m11 * (long) rhs.m10 +
-                              (long) lhs.m12 * (long) rhs.m20) / LFloat.Precision);
-            mat.m11 = (int) (((long) lhs.m10 * (long) rhs.m01 + (long) lhs.m11 * (long) rhs.m11 +
-                              (long) lhs.m12 * (long) rhs.m21) / LFloat.Precision);
-            mat.m12 = (int) (((long) lhs.m10 * (long) rhs.m02 + (long) lhs.m11 * (long) rhs.m12 +
-                              (long) lhs.m12 * (long) rhs.m22) / LFloat.Precision);
-            mat.m20 = (int) (((long) lhs.m20 * (long) rhs.m00 + (long) lhs.m21 * (long) rhs.m10 +
-                              (long) lhs.m22 * (long) rhs.m20) / LFloat.Precision);
-            mat.m21 = (int) (((long) lhs.m20 * (long) rhs.m01 + (long) lhs.m21 * (long) rhs.m11 +
-                              (long) lhs.m22 * (long) rhs.m21) / LFloat.Precision);
-            mat.m22 = (int) (((long) lhs.m20 * (long) rhs.m02 + (long) lhs.m21 * (long) rhs.m12 +
+            mat.m00 = (long) (((long) lhs.m00 * (long) rhs.m00 + (long) lhs.m01 * (long) rhs.m10 +
+                           (long) lhs.m02 * (long) rhs.m20) / LFloat.Precision);
+            mat.m01 = (long) (((long) lhs.m00 * (long) rhs.m01 + (long) lhs.m01 * (long) rhs.m11 +
+                           (long) lhs.m02 * (long) rhs.m21) / LFloat.Precision);
+            mat.m02 = (long) (((long) lhs.m00 * (long) rhs.m02 + (long) lhs.m01 * (long) rhs.m12 +
+                           (long) lhs.m02 * (long) rhs.m22) / LFloat.Precision);
+            mat.m10 = (long) (((long) lhs.m10 * (long) rhs.m00 + (long) lhs.m11 * (long) rhs.m10 +
+                           (long) lhs.m12 * (long) rhs.m20) / LFloat.Precision);
+            mat.m11 = (long) (((long) lhs.m10 * (long) rhs.m01 + (long) lhs.m11 * (long) rhs.m11 +
+                           (long) lhs.m12 * (long) rhs.m21) / LFloat.Precision);
+            mat.m12 = (long) (((long) lhs.m10 * (long) rhs.m02 + (long) lhs.m11 * (long) rhs.m12 +
+                           (long) lhs.m12 * (long) rhs.m22) / LFloat.Precision);
+            mat.m20 = (long) (((long) lhs.m20 * (long) rhs.m00 + (long) lhs.m21 * (long) rhs.m10 +
+                           (long) lhs.m22 * (long) rhs.m20) / LFloat.Precision);
+            mat.m21 = (long) (((long) lhs.m20 * (long) rhs.m01 + (long) lhs.m21 * (long) rhs.m11 +
+                           (long) lhs.m22 * (long) rhs.m21) / LFloat.Precision);
+            mat.m22 = (long) (((long) lhs.m20 * (long) rhs.m02 + (long) lhs.m21 * (long) rhs.m12 +
                               (long) lhs.m22 * (long) rhs.m22) / LFloat.Precision);
             return mat;
         }
@@ -155,11 +157,11 @@ namespace Lockstep.Math
         public static LVector3 operator *(LMatrix33 lhs, LVector3 vector3)
         {
             LVector3 vec;
-            vec._x = (int) (((long) lhs.m00 * (long) vector3.x + (long) lhs.m01 * (long) vector3.y +
+            vec._x = (long) (((long) lhs.m00 * (long) vector3.x + (long) lhs.m01 * (long) vector3.y +
                              (long) lhs.m02 * (long) vector3.z) / LFloat.Precision);
-            vec._y = (int) (((long) lhs.m10 * (long) vector3.x + (long) lhs.m11 * (long) vector3.y +
+            vec._y = (long) (((long) lhs.m10 * (long) vector3.x + (long) lhs.m11 * (long) vector3.y +
                              (long) lhs.m12 * (long) vector3.z) / LFloat.Precision);
-            vec._z = (int) (((long) lhs.m20 * (long) vector3.x + (long) lhs.m21 * (long) vector3.y +
+            vec._z = (long) (((long) lhs.m20 * (long) vector3.x + (long) lhs.m21 * (long) vector3.y +
                              (long) lhs.m22 * (long) vector3.z) / LFloat.Precision);
             return vec;
         }

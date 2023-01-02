@@ -1,3 +1,5 @@
+//https://github.com/JiepengTan/LockstepMath
+
 using System;
 using Lockstep.Math;
 using static Lockstep.Math.LVector3;
@@ -27,15 +29,15 @@ namespace Lockstep.Math
         public static LVector3 Transform(ref LVector3 point, ref LVector3 axis_x, ref LVector3 axis_y, ref LVector3 axis_z,
             ref LVector3 trans, ref LVector3 scale)
         {
-            long num = (long) point._x * (long) scale._x;
-            long num2 = (long) point._y * (long) scale._x;
-            long num3 = (long) point._z * (long) scale._x;
+            long num = (long) point._x * (long) scale._x /LFloat.Precision;
+            long num2 = (long) point._y * (long) scale._x/LFloat.Precision;
+            long num3 = (long) point._z * (long) scale._x/LFloat.Precision;
             return new LVector3(true,
-                (int) (((long) axis_x._x * num + (long) axis_y._x * num2 + (long) axis_z._x * num3) / 1000000L) +
+                (int) (((long) axis_x._x * num + (long) axis_y._x * num2 + (long) axis_z._x * num3) /LFloat.Precision) +
                 trans._x,
-                (int) (((long) axis_x._y * num + (long) axis_y._y * num2 + (long) axis_z._y * num3) / 1000000L) +
+                (int) (((long) axis_x._y * num + (long) axis_y._y * num2 + (long) axis_z._y * num3) /LFloat.Precision) +
                 trans._y,
-                (int) (((long) axis_x._z * num + (long) axis_y._z * num2 + (long) axis_z._z * num3) / 1000000L) +
+                (int) (((long) axis_x._z * num + (long) axis_y._z * num2 + (long) axis_z._z * num3) /LFloat.Precision) +
                 trans._z);
         }
 
@@ -76,5 +78,7 @@ namespace Lockstep.Math
             return LMath.Acos(Dot(lhs, rhs));
         }
 
+        
+        
     }
 }

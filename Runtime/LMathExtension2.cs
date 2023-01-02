@@ -1,3 +1,5 @@
+//https://github.com/JiepengTan/LockstepMath
+
 using Lockstep.Math;
 
 namespace Lockstep.Math {
@@ -44,6 +46,24 @@ namespace Lockstep.Math {
                 LMath.FloorToInt(vec.y),
                 LMath.FloorToInt(vec.z)
             );
+        }
+    }
+
+    public static partial class LMathExtension {
+        public static LVector2 RightVec(this LVector2 vec){
+            return new LVector2(true, vec._y, -vec._x);
+        }
+
+        public static LVector2 LeftVec(this LVector2 vec){
+            return new LVector2(true, -vec._y, vec._x);
+        }
+
+        public static LVector2 BackVec(this LVector2 vec){
+            return new LVector2(true, -vec._x, -vec._y);
+        }
+        
+        public static LFloat Abs(this LFloat val){
+            return LMath.Abs(val);
         }
     }
 }

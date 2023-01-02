@@ -1,3 +1,5 @@
+//https://github.com/JiepengTan/LockstepMath
+
 // Decompiled with JetBrains decompiler
 // Type: UnityEngine.Vector2Int
 // Assembly: UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -7,6 +9,7 @@ using Lockstep.Math;
 using System;
 
 namespace Lockstep.Math  {
+    [System.Serializable]
     public struct LVector2Int : IEquatable<LVector2Int> {
         public class Mathf {
             /// <summary>
@@ -40,29 +43,15 @@ namespace Lockstep.Math  {
         private static readonly LVector2Int s_Down = new LVector2Int(0, -1);
         private static readonly LVector2Int s_Left = new LVector2Int(-1, 0);
         private static readonly LVector2Int s_Right = new LVector2Int(1, 0);
-        private int m_X;
-        private int m_Y;
+        public int x;
+        public int y;
 
         public LVector2Int(int x, int y){
-            this.m_X = x;
-            this.m_Y = y;
+            this.x = x;
+            this.y = y;
         }
 
-        /// <summary>
-        ///   <para>X component of the vector.</para>
-        /// </summary>
-        public int x {
-            get { return this.m_X; }
-            set { this.m_X = value; }
-        }
 
-        /// <summary>
-        ///   <para>Y component of the vector.</para>
-        /// </summary>
-        public int y {
-            get { return this.m_Y; }
-            set { this.m_Y = value; }
-        }
 
         /// <summary>
         ///   <para>Set x and y components of an existing Vector2Int.</para>
@@ -70,8 +59,8 @@ namespace Lockstep.Math  {
         /// <param name="x"></param>
         /// <param name="y"></param>
         public void Set(int x, int y){
-            this.m_X = x;
-            this.m_Y = y;
+            this.x = x;
+            this.y = y;
         }
 
         public int this[int index] {
